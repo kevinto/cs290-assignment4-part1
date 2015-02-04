@@ -1,3 +1,7 @@
 Start: Mon, 2 Feb 2015 19:40:37 -0800
 End: Mon, 2 Feb 2015 19:46:37 -0800
 Tasks: initial commit of the work log and the src file.
+
+Start: Mon, 2 Feb 2015 19:50:09 -0800
+End: Mon, 2 Feb 2015 20:28:09 -0800
+Tasks: added the multtable page. added parameter checking for that page
