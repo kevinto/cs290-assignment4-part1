@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="multtable.css">
 	<title>Multtable</title>
 </head>
 <body>
@@ -15,8 +15,6 @@ if (!allGetParamsExist() || !paramsValidIntegers() || !minMaxValid()) {
 }
 
 createMultTable();
-
-echo "test me";
 
 function allGetParamsExist() {
   if (!isset($_GET['min-multiplicand']) || !isset($_GET['max-multiplicand']) || !isset($_GET['min-multiplier']) || !isset($_GET['max-multiplier'])) {
@@ -37,10 +35,6 @@ function allGetParamsExist() {
       echo "<p>Missing parameter [max-multiplier].</p>";
     }
 
-    // $minMultiplicand = $_GET['min-multiplicand'];
-
-    // echo "<p>The first param(min-multiplicand) value is: $minMultiplicand. \n</p>";
-    // echo "<p>The first param(min-multiplicand) value is: $minMultiplicand. \n</p>";
     return false;
   }
 
@@ -83,7 +77,50 @@ function paramsValidIntegers() {
 }
 
 function createMultTable() {
+  $minMultiplicand = intval($_GET['min-multiplicand']);
+  $maxMultiplicand = intval($_GET['max-multiplicand']);
+  $minMultiplier = intval($_GET['min-multiplier']);
+  $maxMultiplier = intval($_GET['max-multiplier']);
 
+  $totalRows = $maxMultiplicand - $minMultiplicand + 2;
+  $totalColumns = $maxMultiplier - $minMultiplier + 2;
+
+  echo "<table>";
+
+  for ($i = 0; $i < $totalRows; $i++) { 
+    echo "<tr>";
+
+    for ($j = 0; $j < $totalColumns; $j++) { 
+      // Keep top left cell empty
+      if ($i === 0 && $j === 0) {
+        echo "<th>";
+        continue;
+      }
+
+      $currMultiplicand = $minMultiplicand + ($i - 1);
+      $currMultiplier = $minMultiplier + ($j - 1);
+
+      if ($j === 0) {
+        // Left column should be numbered from minMultiplicand to maxMultiplicand
+        $displayValue = $currMultiplicand;
+        echo "<th>$displayValue"; 
+      }
+      elseif ($i === 0) {
+        // Topmost row should be numbered from minMultiplier to maxMultiplier
+        $displayValue = $currMultiplier;
+        echo "<th>$displayValue"; 
+      }
+      else {
+        // Current cell displays the product
+        $displayValue = $currMultiplicand * $currMultiplier;
+        echo "<th>$displayValue"; 
+      }
+    }
+
+    echo "</tr>";
+  }
+
+  echo "</table>";
 }
 ?>
 </body>
