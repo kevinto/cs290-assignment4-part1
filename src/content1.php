@@ -1,5 +1,12 @@
 <?php
 session_start();
+
+// Redirect to login page if User tries to access content1.php without logging in first.
+if ($_SERVER['REQUEST_METHOD'] !== 'POST' && !isset($_SESSION['username']) && !isset($_SESSION['visits'])) {
+  header('Location: https://web.engr.oregonstate.edu/~toke/a4/login.php', true, 301);
+  die();
+}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -40,11 +47,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // Run logged in user's session when this page is accessed thru non-POSTs
-if (session_status() == PHP_SESSION_ACTIVE && isset($_SESSION['username']) && isset($_SESSION['visits'])) {
+if (session_status() == PHP_SESSION_ACTIVE) {
+  if (isset($_SESSION['username']) && isset($_SESSION['visits'])) {
+    $_SESSION['visits']++;
 
-  $_SESSION['visits']++;
-
-  echo "Hello $_SESSION[username] you have visited this page $_SESSION[visits] times before. Click $logoutRedirect to logout.";
+    echo "Hello $_SESSION[username] you have visited this page $_SESSION[visits] times before. Click $logoutRedirect to logout."; 
+  }
+  else
+  {
+    header('Location: https://web.engr.oregonstate.edu/~toke/a4/login.php', true, 301);
+    die();
+  }
 }
 
 ?>
