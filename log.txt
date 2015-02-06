@@ -21,3 +21,7 @@ Tasks: Finished implementing loopback.php.
 Start: Thu, 5 Feb 2015 17:30:27 -0800 
 End: Thu, 5 Feb 2015 19:09:27 -0800
 Tasks: worked on the login php page. got login to work with session cookies saved between page refreshes
+
+Start: Fri, 6 Feb 2015 15:01:48 -0800
+End: Fri, 6 Feb 2015 15:20:48 -0800
+Tasks: added a redirect to content1.php if user tries to access page without loggin in first
