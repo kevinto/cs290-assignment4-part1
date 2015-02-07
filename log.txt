@@ -25,3 +25,7 @@ Tasks: worked on the login php page. got login to work with session cookies save
 Start: Fri, 6 Feb 2015 15:01:48 -0800
 End: Fri, 6 Feb 2015 15:20:48 -0800
 Tasks: added a redirect to content1.php if user tries to access page without loggin in first
+
+Start: Fri, 6 Feb 2015 15:20:48 -0800:
+End: Fri, 6 Feb 2015 16:00:05 -0800
+Tasks: cleaned up the URLs in content1.php
