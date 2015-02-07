@@ -29,3 +29,7 @@ Tasks: added a redirect to content1.php if user tries to access page without log
 Start: Fri, 6 Feb 2015 15:20:48 -0800:
 End: Fri, 6 Feb 2015 16:00:05 -0800
 Tasks: cleaned up the URLs in content1.php
+
+Start: Fri, 6 Feb 2015 22:12:44 -0800
+End: Fri, 6 Feb 2015 22:58:44 -0800
+Tasks: finished content2 feature implementation
