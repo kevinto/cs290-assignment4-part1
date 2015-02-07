@@ -22,6 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST' && !isset($_SESSION['username']) && !i
 error_reporting(E_ALL);
 ini_set('display_errors', 'On');
 
+// Setup the redirects to logout and to the content2 page
 $filePath = explode('/', $_SERVER['PHP_SELF'], -1);
 $filePath = implode('/', $filePath);
 $redirect = "https://" . $_SERVER['HTTP_HOST'] . $filePath;
@@ -30,14 +31,18 @@ $logoutRedirect = "<a href=\"$logoutRedirect\">here</a>";
 $content2Redirect = $redirect . '/content2.php';
 $content2Redirect = "<a href=\"$content2Redirect\">here</a>";
 
+// Set up the login cookie info if the correct info is passed in via POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   if (count($_POST) <= 0 || $_POST === '' || $_POST === null || $_POST['username'] === null || $_POST['username'] === '') {
+    // The incorrect parameters were passed in..
     echo "A username must be entered. Click <a href=\"$redirect/login.php\">here</a> to return to the login screen.";
 
     die();
   }
   else {
     if (session_status() == PHP_SESSION_ACTIVE) {
+      // This is a valid login session
+      
       $username = $_POST['username'];
       $_SESSION['username'] = $username;
 

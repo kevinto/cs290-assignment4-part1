@@ -10,12 +10,14 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 'On');
 
+// Checks Preconditions
 if (!allGetParamsExist() || !paramsValidIntegers() || !minMaxValid()) {
   exit();
 }
 
 createMultTable();
 
+// Checks if all GET parameters exist
 function allGetParamsExist() {
   if (!isset($_GET['min-multiplicand']) || !isset($_GET['max-multiplicand']) || !isset($_GET['min-multiplier']) || !isset($_GET['max-multiplier'])) {
 
@@ -41,6 +43,7 @@ function allGetParamsExist() {
   return true;
 }
 
+// Checks if the minimums are less than the maximums
 function minMaxValid() {
   if ($_GET['min-multiplicand'] > $_GET['max-multiplicand'] ||$_GET['min-multiplier'] > $_GET['max-multiplier']) {
     echo "<p>Minimum [multiplicand|multiplier] larger than maximum.</p>";
@@ -50,6 +53,7 @@ function minMaxValid() {
   return true;
 }
 
+// Checks if all the GET params are valid integers
 function paramsValidIntegers() {
   $isValid = true;
 
@@ -76,6 +80,7 @@ function paramsValidIntegers() {
   return $isValid;
 }
 
+// Creates the multiplication table based on the GET parameters
 function createMultTable() {
   $minMultiplicand = intval($_GET['min-multiplicand']);
   $maxMultiplicand = intval($_GET['max-multiplicand']);

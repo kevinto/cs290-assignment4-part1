@@ -20,6 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST' && !isset($_SESSION['username']) && !i
 <body>
 <?php
 
+// Set up the redirect to content1 page
 $filePath = explode('/', $_SERVER['PHP_SELF'], -1);
 $filePath = implode('/', $filePath);
 $redirect = "https://" . $_SERVER['HTTP_HOST'] . $filePath;
