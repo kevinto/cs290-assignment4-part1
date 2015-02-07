@@ -3,7 +3,10 @@ session_start();
 
 // Redirect to login page if User tries to access content1.php without logging in first.
 if ($_SERVER['REQUEST_METHOD'] !== 'POST' && !isset($_SESSION['username']) && !isset($_SESSION['visits'])) {
-  header('Location: https://web.engr.oregonstate.edu/~toke/a4/login.php', true, 301);
+  $filePath = explode('/', $_SERVER['PHP_SELF'], -1);
+  $filePath = implode('/', $filePath);
+  $redirect = "https://" . $_SERVER['HTTP_HOST'] . $filePath;
+  header("Location: $redirect/login.php", true, 301);
   die();
 }
 
@@ -19,11 +22,15 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST' && !isset($_SESSION['username']) && !i
 error_reporting(E_ALL);
 ini_set('display_errors', 'On');
 
-$logoutRedirect = '<a href="https://web.engr.oregonstate.edu/~toke/a4/login.php?logoff=true">here</a>';
+$filePath = explode('/', $_SERVER['PHP_SELF'], -1);
+$filePath = implode('/', $filePath);
+$redirect = "https://" . $_SERVER['HTTP_HOST'] . $filePath;
+$logoutRedirect = $redirect . '/login.php?logoff=true';
+$logoutRedirect = "<a href=\"$logoutRedirect\">here</a>";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   if (count($_POST) <= 0 || $_POST === '' || $_POST === null || $_POST['username'] === null || $_POST['username'] === '') {
-    echo 'A username must be entered. Click <a href="https://web.engr.oregonstate.edu/~toke/a4/login.php">here</a> to return to the login screen.';
+    echo "A username must be entered. Click <a href=\"$redirect/login.php\">here</a> to return to the login screen.";
 
     die();
   }
@@ -52,11 +59,6 @@ if (session_status() == PHP_SESSION_ACTIVE) {
     $_SESSION['visits']++;
 
     echo "Hello $_SESSION[username] you have visited this page $_SESSION[visits] times before. Click $logoutRedirect to logout."; 
-  }
-  else
-  {
-    header('Location: https://web.engr.oregonstate.edu/~toke/a4/login.php', true, 301);
-    die();
   }
 }
 
