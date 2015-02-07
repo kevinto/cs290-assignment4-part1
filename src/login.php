@@ -6,6 +6,11 @@ if (isset($_GET['logoff']) && $_GET['logoff'] === 'true') {
   $_SESSION = array();
   session_destroy();
 }
+
+$filePath = explode('/', $_SERVER['PHP_SELF'], -1);
+$filePath = implode('/', $filePath);
+$redirect = "https://" . $_SERVER['HTTP_HOST'] . $filePath;
+$contentRedirect = $redirect . '/content1.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -14,7 +19,7 @@ if (isset($_GET['logoff']) && $_GET['logoff'] === 'true') {
   <title>Login</title>
 </head>
 <body>
-  <form action="https://web.engr.oregonstate.edu/~toke/a4/content1.php" method="post">
+  <form action=<?=$contentRedirect?> method="post">
     <fieldset>
       <label>User Name: </label>
       <input type="text" name="username"><br>

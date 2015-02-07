@@ -27,6 +27,8 @@ $filePath = implode('/', $filePath);
 $redirect = "https://" . $_SERVER['HTTP_HOST'] . $filePath;
 $logoutRedirect = $redirect . '/login.php?logoff=true';
 $logoutRedirect = "<a href=\"$logoutRedirect\">here</a>";
+$content2Redirect = $redirect . '/content2.php';
+$content2Redirect = "<a href=\"$content2Redirect\">here</a>";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   if (count($_POST) <= 0 || $_POST === '' || $_POST === null || $_POST['username'] === null || $_POST['username'] === '') {
@@ -46,8 +48,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['visits']++;
       }
 
-      echo "Hello $username you have visited this page $_SESSION[visits] times before. Click $logoutRedirect to logout.";
-
+      echo "Hello $username you have visited this page $_SESSION[visits] times before. Click $logoutRedirect to logout.<br>";
+      echo "Click $content2Redirect to go to content2";
       die();
     }
   }
@@ -58,7 +60,8 @@ if (session_status() == PHP_SESSION_ACTIVE) {
   if (isset($_SESSION['username']) && isset($_SESSION['visits'])) {
     $_SESSION['visits']++;
 
-    echo "Hello $_SESSION[username] you have visited this page $_SESSION[visits] times before. Click $logoutRedirect to logout."; 
+    echo "Hello $_SESSION[username] you have visited this page $_SESSION[visits] times before. Click $logoutRedirect to logout.<br>"; 
+    echo "Click $content2Redirect to go to content2";
   }
 }
 
