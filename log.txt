@@ -33,3 +33,7 @@ Tasks: cleaned up the URLs in content1.php
 Start: Fri, 6 Feb 2015 22:12:44 -0800
 End: Fri, 6 Feb 2015 22:58:44 -0800
 Tasks: finished content2 feature implementation
+
+Start: Sat, 7 Feb 2015 10:20:49 -0800
+End: Sat, 7 Feb 2015 10:45:49 -0800
+Tasks: finished final testing and code cleanup
